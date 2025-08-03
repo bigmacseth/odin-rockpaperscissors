@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        function computerSelection() {
+            return Math.floor(Math.random() * 3); 
+        }
+
+        let cpuScore = 0;
+        let userScore = 0;
+        
+        // inputComputer is a number (0 = rock 1 = paper 2 = scissors)
+        function playGame(inputUser, inputComputer) {
+            console.log('the game has begun!')
+            switch (inputUser) {
+                case 'rock': 
+                    if (inputComputer == 0) {
+                        // draw 
+                        console.log('No one wins, its a draw!')
+                    } else if (inputComputer == 1) {
+                        // cpu wins
+                        cpuScore++;
+                        console.log('The CPU wins its score is ' + cpuScore)
+                        console.log(inputComputer)
+                    } else {
+                        // user wins
+                        userScore++;
+                        console.log('You have won! Your score is now ' + userScore)
+                    }
+                    break; 
+
+                    case 'paper': 
+                    if (inputComputer == 1) {
+                        // draw 
+                        console.log('No one wins, its a draw!')
+                    } else if (inputComputer == 2) {
+                        // cpu wins
+                        cpuScore++;
+                        console.log('The CPU wins its score is ' + cpuScore)
+                    } else {
+                        // user wins
+                        userScore++;
+                        console.log('You have won! Your score is now ' + userScore)
+                    }
+                    break;
+
+                    case 'scissors': 
+                    if (inputComputer == 2) {
+                        // draw 
+                        console.log('No one wins, its a draw!')
+                    } else if (inputComputer == 0) {
+                        // cpu wins
+                        cpuScore++;
+                        console.log('The CPU wins its score is ' + cpuScore)
+                    } else {
+                        // user wins
+                        userScore++;
+                        console.log('You have won! Your score is now ' + userScore)
+                    }
+                    break;
+            }
+        }
+
+        function showPrompt() {
+            return userInput = prompt('This is Rock, Paper, Scissors! Please pick one of the three to begin: ')
+        }
+        
+        while ((userScore < 5) && (cpuScore < 5)) {
+            playGame(showPrompt(), computerSelection());
+        }
+        
+        
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
