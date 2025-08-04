@@ -5,69 +5,20 @@ function computerSelection() {
 let cpuScore = 0;
 let userScore = 0;
 
-// inputComputer is a number (0 = rock 1 = paper 2 = scissors)
-function playGame(inputUser, inputComputer) {
-  switch (inputUser) {
-    case "rock":
-      if (inputComputer == 0) {
-        // draw
-        console.log("No one wins, its a draw!");
-      } else if (inputComputer == 1) {
-        // cpu wins
-        cpuScore++;
-        console.log("The CPU wins its score is " + cpuScore);
-      } else {
-        // user wins
-        userScore++;
-        console.log("You have won! Your score is now " + userScore);
-      }
-      break;
+function updateScore(result) {
 
-    case "paper":
-      if (inputComputer == 1) {
-        // draw
-        console.log("No one wins, its a draw!");
-      } else if (inputComputer == 2) {
-        // cpu wins
-        cpuScore++;
-        console.log("The CPU wins its score is " + cpuScore);
-      } else {
-        // user wins
-        userScore++;
-        console.log("You have won! Your score is now " + userScore);
-      }
-      break;
+    // all this does is make it easier to read the inside of the switch cases.
 
-    case "scissors":
-      if (inputComputer == 2) {
-        // draw
-        console.log("No one wins, its a draw!");
-      } else if (inputComputer == 0) {
-        // cpu wins
-        cpuScore++;
-        console.log("The CPU wins its score is " + cpuScore);
-      } else {
-        // user wins
-        userScore++;
-        console.log("You have won! Your score is now " + userScore);
-      }
-      break;
-  }
-}
+    const resultCard = document.querySelector("#result");
+    const userScoreCard = document.querySelector("#userScoreCard");
+    const cpuScoreCard = document.querySelector("#cpuScoreCard");
 
-function showPrompt() {
-  return (userInput = prompt(
-    "This is Rock, Paper, Scissors! Please pick one of the three to begin: "
-  ));
-}
-
-function updateScore(element, score) {
-    
+    // these lines update the DOM elements associated with them when the function is called.
+    resultCard.textContent = result;
+    userScoreCard.textContent = 'Your Score Is: ' + userScore;
+    cpuScoreCard.textContent = "The CPU's Score Is: " + cpuScore;
 };
 
-const rock = document.querySelector('#rock');
-const paper = document.querySelector('#paper');
-const scissors = document.querySelector('#scissors');
 
 const wrapper = document.querySelector('.wrapper');
 
@@ -75,34 +26,72 @@ wrapper.addEventListener('click', (e) => {
     let target = e.target;
     let cpuSelection;
     switch(target.id) {
+
         //cpu selections are based on numbers (0 = rock 1 = paper 2 = scissors)    
         case 'rock':
             cpuSelection = computerSelection();
             if (cpuSelection === 0) {
+
+                // draw does nothing except update the resultCard DOM object.
+                updateScore('DRAW');
                 console.log('draw');
+
             } else if (cpuSelection === 1) {
+
+                // user wins, adding 1 to their score and updating the resultCard.
+                userScore++;
+                updateScore('YOU WON');
                 console.log('user won!');
+
             } else {
+
+                // cpu wins, adding 1 to their score and updating the resultCard.
+                cpuScore++;
+                updateScore('CPU WON');
                 console.log('cpu won :(');
+
             }
             break;
+
         case 'paper':
             cpuSelection = computerSelection();
             if (cpuSelection === 1) {
+
+                updateScore('DRAW');
                 console.log('draw');
+
             } else if (cpuSelection === 0) {
+
+                userScore++;
+                updateScore('YOU WON');
                 console.log('user won!');
+
             } else {
+
+                cpuScore++;
+                updateScore('CPU WON');
                 console.log('cpu won :(');
+
             }
             break;
+
         case 'scissors': 
             cpuSelection = computerSelection();
             if (cpuSelection === 2) {
+
+                updateScore('DRAW');
                 console.log('draw');
+
             } else if (cpuSelection === 1) {
+
+                userScore++;
+                updateScore('YOU WON');
                 console.log('user won!');
+
             } else {
+
+                cpuScore++;
+                updateScore('CPU WON');
                 console.log('cpu won :(');
             }
             break;
